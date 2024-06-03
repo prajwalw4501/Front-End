@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function largest() {
+        var n1 = parseInt(document.getElementById("num1").value);
+        var n2 = parseInt(document.getElementById("num2").value);
+        var n3 = parseInt(document.getElementById("num3").value);
+        if (n1 > n2 && n1 > n3)
+            document.getElementById("result").innerHTML = n1 + " " + "is greatest!";
+        else if (n2 > n1 && n2 > n3)
+            document.getElementById("result").innerHTML = n2 + " " + "is greatest!";
+        else
+            document.getElementById("result").innerHTML = n3 + " " + "is greatest!";
+
+        document.getElementById("num1").value =" ";
+        document.getElementById("num2").value =" ";
+        document.getElementById("num3").value =" ";
+        document.getElementById("num1").focus();
+
+    }
+
+</script>
+
+<body>
+    <form>
+        Enter 3 positive Numbers: <br>
+        <input type="text" name="num1" id="num1" placeholder="Num1">
+        <input type="text" name="num2" id="num2" placeholder="Num2">
+        <input type="text" name="num3" id="num3" placeholder="Num3"><br><br>
+        <button type="button" id="large" name="large" onclick="largest()">Largest Num</button>
+
+        <div id="result" style="color: brown;"></div>
+
+
+    </form>
+
+</body>
+
+</html>
