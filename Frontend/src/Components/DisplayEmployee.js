@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react'
 import axios from 'axios';
 import { FaEdit,FaTrash,FaMapMarkedAlt } from 'react-icons/fa';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/ReactToastify.css";
 
 
 const DisplayEmployee = () => {
@@ -43,6 +45,7 @@ const DisplayEmployee = () => {
     return (
 
       <div className="min-h-screen bg-gray-100 p-6">
+        <ToastContainer position='top-center'/>
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">Employee Details</h1>
           <div className="overflow-x-auto">

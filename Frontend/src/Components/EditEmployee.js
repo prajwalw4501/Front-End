@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
+import "react-toastify/ReactToastify.css";
+
 
 const EditEmployee = () => {
   const navigate = useNavigate();
@@ -52,6 +54,7 @@ const EditEmployee = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 flex items-center justify-center p-6">
+      <ToastContainer position='top-center'/>
     <div className="w-full max-w-md bg-white shadow-2xl rounded-lg p-8 border border-gray-300 overflow-hidden">
       <h2 className="text-3xl font-extrabold mb-6 text-gray-900 text-center">Edit Employee</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -73,7 +76,7 @@ const EditEmployee = () => {
               value={formState.lastName}
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-blue-400 transition duration-300"
-              required
+             required
             />
           </div>
         </div>
@@ -85,7 +88,8 @@ const EditEmployee = () => {
             onChange={handleChange}
             className="w-full p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-blue-400 transition duration-300"
             type="number"
-            required
+           required
+            min={0}
           />
         </div>
         <div>
@@ -95,7 +99,7 @@ const EditEmployee = () => {
             value={formState.gender}
             onChange={handleChange}
             className="w-full p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-blue-400 transition duration-300"
-            required
+           required
           >
             <option value="" disabled>Select Gender</option>
             <option value="MALE">Male</option>
@@ -111,6 +115,8 @@ const EditEmployee = () => {
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-blue-400 transition duration-300"
               required
+              min={10}
+              max={10}
             />
           </div>
           <div className="flex-1">
@@ -121,6 +127,8 @@ const EditEmployee = () => {
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-blue-400 transition duration-300"
               required
+              min={12}
+              max={12}
             />
           </div>
         </div>

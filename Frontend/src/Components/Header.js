@@ -50,17 +50,7 @@ export const Header = () => {
               className="size-10 absolute bottom-1 right-5 text-white cursor-auto"
               onClick={showUser}
             />
-              {/* <div className="absolute bg-white shadow-md p-2 rounded-md right-0 mt-2 z-30 mt-6 mr-2">
-                <button className="text-green-700 hover:bg-gray-200 px-6 py-2 rounded-md w-full"
-                onClick={showUser}
-                >User Details</button> */}
-                {/* <button
-                  className="text-red-700 hover:bg-gray-200 px-4 py-2 rounded-md w-full"
-                  onClick={handleLogout}
-                >
-                  Log out
-                </button> */}
-              {/* </div> */}
+             
             
             
             </div>

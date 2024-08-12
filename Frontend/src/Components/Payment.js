@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
-
+import { ToastContainer,toast } from 'react-toastify';
+import "react-toastify/ReactToastify.css";
 
 
 
@@ -33,10 +34,10 @@ const Payment = () => {
               const verificationResponse = await axios.post('http://localhost:8080/verifyPayment', paymentData);
     
               if (verificationResponse.data.success) {
-                alert('Payment successful!');
+                toast.success('Payment successful!');
                 // Proceed with booking confirmation
               } else {
-                alert('Payment verification failed!');
+                toast.error('Payment verification failed!');
               }
             },
             prefill: {
@@ -53,14 +54,15 @@ const Payment = () => {
           rzp1.open();
         } catch (err) {
           console.error(err);
-          alert('Payment initialization failed. Please try again.');
+          toast.error('Payment initialization failed. Please try again.');
         }
       };
     
       return (
         
         <div className="flex flex-col items-center justify-center">
-            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+          <ToastContainer position='top-center'/>
+            
           <h2 className="text-2xl font-bold mb-4">Booking Details</h2>
           {/* <p>Service: {bookingDetails.serviceName}</p>
           <p>Amount: ₹{bookingDetails.amount / 100}</p> */}

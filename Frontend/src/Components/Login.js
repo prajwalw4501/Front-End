@@ -48,9 +48,10 @@ const Login = () => {
         role:result.data.role,
         firstname:result.data.first_name,
         lastname:result.data.last_name,
-        uid:result.data.useri_d,
+        uid:result.data.user_id,
     
       }))
+      localStorage.setItem("isAuthenticated", "true");
 
     } catch (err) {
       console.error(err);
@@ -70,6 +71,7 @@ const Login = () => {
     >
       <div className="absolute inset-0 bg-black opacity-30"></div>
       <div className="max-w-md w-full space-y-8 bg-white bg-opacity-90 p-10 rounded-xl shadow-2xl relative z-10">
+        <ToastContainer position="top-center"/>
         <div>
           <img
             className="mx-auto h-20 w-auto"
@@ -98,7 +100,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div><br /><br />
+            </div><br />
             <div>
               <label htmlFor="password" className="sr-only">
                 Password

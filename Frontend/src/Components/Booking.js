@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
+import { ToastContainer,toast } from 'react-toastify';
+import "react-toastify/ReactToastify.css";
 
 
 const Booking = () => {
@@ -20,6 +22,7 @@ const Booking = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
+      <ToastContainer position='top-center'></ToastContainer>
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">My Bookings</h1>
         

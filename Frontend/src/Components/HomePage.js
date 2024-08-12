@@ -44,7 +44,7 @@ const HomePage = () => {
           Welcome to Ease My Work
         </h1>
         <p className="text-xl text-white mb-12 shadow-text">
-          Manage your products with ease and efficiency
+          Manage your Home with ease and efficiency!!
         </p>
         <div className="space-x-4">
           <Link

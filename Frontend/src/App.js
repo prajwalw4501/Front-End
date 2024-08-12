@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createBrowserRouter, Outlet, useLocation } from "react-router-dom";
 import Login from "./Components/Login";
 import Home from "./Components/Home.js";
@@ -16,6 +16,7 @@ import { createContext } from "react";
 import Register from "./Components/Register.js";
 import DisplayEmployee from "./Components/DisplayEmployee.js";
 import EditEmployee from "./Components/EditEmployee.js";
+import EmployeeBooking from "./Components/Testimonial/EmployeBooking.js";
 
 
 export const Context = createContext({ isAuthenticated: false });
@@ -28,6 +29,26 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState({});
+  const[selectedemployee,setSelectedemployee]=useState([]);
+
+  useEffect(()=>{
+
+const authenticate = localStorage.getItem("isAuthenticated")
+console.log(authenticate,"asdaf...........................................");
+if(authenticate=="true")
+  {
+  // setIsAuthenticated(true);
+  // console.log("printttttttttttttttttt");
+  // setUser(()=>({
+  //   email:"sjdnj@gmail.com",
+  //   role,
+  //   firstname,
+  //   lastname,
+  //   uid
+
+  // }))
+}
+  },[])
 
 
   return (
@@ -37,6 +58,8 @@ function App() {
         setIsAuthenticated,
         user,
         setUser,
+        selectedemployee,
+        setSelectedemployee,
       }}
     >
       <ScrollRestoration />
@@ -69,6 +92,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path:"/book",
+        element:<EmployeeBooking/>
       },
       {
         path: "/contact",
