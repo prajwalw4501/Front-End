@@ -1,45 +1,63 @@
 import React from "react";
-//import CarPng from "../../assets/car1.png";
 import cartlogo from "../../assets/cartlogo.jpg";
 
 const About = () => {
   return (
-    <div className="dark:bg-dark bg-slate-100 sm:min-h-[600px] sm:grid sm:place-items-center duration-300">
-      <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center">
-          <div data-aos="slide-right" data-aos-duration="1500">
+    <section className="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-gray-900 dark:to-gray-800 py-16 sm:py-24 transition-colors duration-300">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div
+            className="order-2 lg:order-1 relative"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             <img
               src={cartlogo}
-              alt=""
-              className="sm:scale-125 sm:-translate-x-11 max-h-[300px] drop-shadow-[2px_10px_6px_rgba(0,0,0,0.50)]"
+              alt="Home services illustration"
+              className="w-full max-w-lg mx-auto lg:max-w-none lg:w-[50%] lg:-translate-x-[5%] rounded-lg shadow-2xl transition-transform duration-300 hover:scale-125"
             />
           </div>
-          <div>
-            <div className="space-y-5 sm:p-16 pb-6">
-              <h1
-                data-aos="fade-up"
-                className="text-3xl sm:text-4xl font-bold font-serif"
-              >
-                About Us
-              </h1>
-              <p data-aos="fade-up" className="leading-8 tracking-wide">
-              We understand that finding reliable help for your home can be challenging.
-              Your home deserves the best care, and finding reliable help should be simple. We’re here to make that happen 
-              by connecting you with dedicated individuals who are ready to make a difference in your daily life. 
-              We offer affordable, efficient, and trustworthy solutions that fit your needs perfectly. With our platform,
-               you can rest easy knowing your home is in the hands of those who truly care.
-
-              </p>
-              <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400">
-              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                Get Started
+          <div className="order-1 lg:order-2 space-y-8">
+            <h2
+              data-aos="fade-up"
+              className="text-4xl sm:text-5xl font-bold font-serif text-gray-800 dark:text-white leading-tight"
+            >
+              About Our Mission
+            </h2>
+            <p
+              data-aos="fade-up"
+              data-aos-delay="200"
+              className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+            >
+              At our core, we believe in simplifying your life. We understand
+              the challenges of finding reliable home care, and we're here to
+              bridge that gap. Our platform connects you with dedicated
+              professionals who are passionate about making a positive impact on
+              your daily life.
+            </p>
+            <p
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed"
+            >
+              We offer affordable, efficient, and trustworthy solutions tailored
+              to your unique needs. With our service, you can have peace of mind
+              knowing your home is in capable and caring hands.
+            </p>
+            <button
+              data-aos="fade-up"
+              data-aos-delay="400"
+              className="relative inline-flex items-center justify-center p-1 overflow-hidden text-lg font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-300 ease-in-out"
+            >
+              <span className="relative px-6 py-3 transition-all ease-in duration-150 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 group-hover:text-white">
+                Start Your Journey
               </span>
             </button>
-            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

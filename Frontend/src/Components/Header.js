@@ -1,64 +1,98 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import { Link, useNavigate } from 'react-router-dom';
-import { Context } from '../App';
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../App";
+import { HiMenu, HiX } from "react-icons/hi";
 
 export const Header = () => {
-  const { isAuthenticated, setIsAuthenticated, user, setUser } =
-  useContext(Context);
-    const [showLogout, setShowLogout] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { user } = useContext(Context);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const showUser = () => {
+    navigate("/user");
+  };
 
-    const navigate =  useNavigate();
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
-    const toggleLogout = () => {
-      setShowLogout(!showLogout);
-    };
-    const showUser =()=>{
-      navigate('/user')
-    }
-    const toggleDropdwon=()=>{
-      setIsDropdownOpen(!isDropdownOpen);
-    }
-  
-   
- 
-  
-    return (
-      <div className="relative z-10 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] w-full
-      dark:bg-slate-700 dark:text-white min-h-20 flex items-center px-4">
-       <div className="container py-2 md:py-0">
+  const NavLink = ({ to, children }) => (
+    <Link
+      to={to}
+      className="text-lg font-semibold text-gray-700 hover:text-primary py-2 hover:border-b-2 hover:border-primary transition-colors duration-200"
+      onClick={() => setIsMobileMenuOpen(false)}
+    >
+      {children}
+    </Link>
+  );
+
+  const renderNavLinks = () => (
+    <>
+      {user.role === "ROLE_OWNER" && (
+        <>
+          <NavLink to="/register">Add Employee</NavLink>
+          <NavLink to="/display">Manage Employee</NavLink>
+        </>
+      )}
+      {user.role === "ROLE_USER" && (
+        <>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/contact">Contact Us</NavLink>
+          <NavLink to="/services">Services</NavLink>
+          <NavLink to="/booking">Bookings</NavLink>
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <header className="relative z-20 shadow-md w-full h-16 bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
+      <div className="container mx-auto px-4 py-4 md:py-0">
         <div className="flex justify-between items-center">
-          <div>
-            <span className="text-3xl font-bold font-serif">EaseMyWork</span>
-          </div>
-          <nav className='hidden md:flex gap-16'>
-         {user.role=="ROLE_OWNER" &&  
-             <Link to="/register" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Add Employee</Link>}
-         {user.role=="ROLE_OWNER" &&  
-             <Link to="/display" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Manage Employee</Link>}
-         {/* {user.role=="ROLE_USER" &&  <Link to="/#" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>User1</Link>} */}
-          {/* <Link to="/#" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Admin2</Link> */}
-          {user.role=="ROLE_USER"&&   <Link to="/home" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Home</Link>}
-           {user.role=="ROLE_USER" && <Link to="/contact" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Contact Us</Link>}
-          {user.role=="ROLE_USER" &&  <Link to="/services" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Services</Link>}
-            {/* <Link to="/payment" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Payments</Link> */}
-          {user.role=="ROLE_USER" &&  <Link to="/booking" className='text-lg font-medium hover:text-primary py-2 hover:border-b-2 hover:border-primary'>Bookings</Link>}
-            <div className='relative pl-20'>
-            <CgProfile color='grey'
-              className="size-10 absolute bottom-1 right-5 text-white cursor-auto"
-              onClick={showUser}
-            />
-             
-            
-            
+          <div className="text-3xl font-bold font-serif text-primary">EaseMyWork</div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {renderNavLinks()}
+            <div className="relative">
+              <CgProfile
+                className="text-3xl text-gray-500 dark:text-gray-300 cursor-pointer hover:text-primary transition-colors duration-200"
+                onClick={showUser}
+              />
             </div>
           </nav>
-          </div>
-          </div>
-      </div>
- 
-  )
-}
 
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMobileMenu}
+              className="text-gray-500 dark:text-gray-300 hover:text-primary transition-colors duration-200"
+            >
+              {isMobileMenuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <nav className="md:hidden mt-4 flex flex-col gap-4 bg-white dark:bg-gray-800 shadow-lg p-4 rounded-lg">
+            {renderNavLinks()}
+            <div className="flex items-center justify-between">
+              <span className="text-lg font-medium text-gray-700 dark:text-gray-300">Profile</span>
+              <CgProfile
+                className="text-3xl text-gray-500 dark:text-gray-300 cursor-pointer hover:text-primary transition-colors duration-200"
+                onClick={() => {
+                  showUser();
+                  setIsMobileMenuOpen(false);
+                }}
+              />
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;

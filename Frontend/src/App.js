@@ -17,6 +17,7 @@ import Register from "./Components/Register.js";
 import DisplayEmployee from "./Components/DisplayEmployee.js";
 import EditEmployee from "./Components/EditEmployee.js";
 import EmployeeBooking from "./Components/Testimonial/EmployeBooking.js";
+import Navbar from "./Components/Navbar/Navbar.jsx";
 
 
 export const Context = createContext({ isAuthenticated: false });
@@ -65,6 +66,7 @@ if(authenticate=="true")
       <ScrollRestoration />
 
       {!isHomePage && !isAuthPage && <Header />}
+      {/* {!isHomePage && !isAuthPage && <Navbar />} */}
       <Outlet />
       {!isHomePage && !isAuthPage && <Footer />}
       {/* {!isHomePage && !isAuthPage && <Sidebar />} */}

@@ -1,62 +1,80 @@
-import React, { useContext } from 'react'
-import { Context } from '../App';
-import { FaUser } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Context } from "../App";
+import {
+  FaUser,
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaUserTag,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-
-const Userslist = ({ users }) => {
-
-    return (
-      <div className="flex flex-wrap justify-center">
-        {users.map((user, index) => (
-          <User key={user} user={user} />
-        ))}
-      </div>
-    );
-  };
+const UserInfoItem = ({ icon, label, value }) => (
+  <div className="flex items-center space-x-2 text-gray-200">
+    {icon}
+    <span className="font-semibold">{label}:</span>
+    <span>{value || "N/A"}</span>
+  </div>
+);
 
 const User = () => {
   const { isAuthenticated, setIsAuthenticated, user, setUser } =
-  useContext(Context);
-  const navigate=useNavigate();
-  const handleLogout = () => { 
-    navigate('/login');
-};
-    return (
-      <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
-      <div className="flex items-center p-4">
-          <div className="flex-shrink-0">
-              <FaUser size={50} className="text-gray-700" />
-          </div>
-          <div className="ml-4">
-              <h2 className="text-2xl font-semibold text-gray-800">{user.firstname} {user.lastname}</h2>
-              <p className="text-gray-600">{user.email}</p>
-          </div>
-      </div>
-      <div className="border-t border-gray-200">
-          <div className="p-4">
-              {/* Uncomment and customize if needed */}
-              {/* <div className="mb-2">
-                  <span className="font-bold text-gray-700">Role:</span> {user.role}
-              </div>
-              <div className="mb-2">
-                  <span className="font-bold text-gray-700">Location:</span> {user.city}, {user.state}
-              </div>
-              <div className="mb-2">
-                  <span className="font-bold text-gray-700">Pincode:</span> {user.pincode}
-              </div> */}
-          </div>
-      </div>
-      <div className="p-4">
-          <button onClick={handleLogout} className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150 ease-in-out">
-              Logout
-          </button>
-      </div>
-  </div>
-  
-      );
-    };
-    
-    
+    useContext(Context);
+  const navigate = useNavigate();
 
-export default User
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
+    navigate("/login");
+  };
+
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-fixed"
+      style={{
+        backgroundImage: `url(../src/assets/wp2508260-admin-wallpapers.jpg)`,
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div className="w-full max-w-md space-y-8 bg-gray-800 bg-opacity-80 backdrop-filter backdrop-blur-lg p-8 rounded-xl shadow-2xl relative z-10">
+        <div className="text-center">
+          <div className="inline-block bg-purple-600 rounded-full p-4 mb-4">
+            <FaUser size={32} className="text-white" />
+          </div>
+          <h2 className="text-3xl font-extrabold text-white mb-2">
+            {user.firstname} {user.lastname}
+          </h2>
+          <p className="text-purple-300 mb-6">{user.email}</p>
+        </div>
+
+        <div className="space-y-4 mb-8">
+          {/* <UserInfoItem
+            icon={<FaUserTag className="text-purple-400" />}
+            label="Role"
+            value={user.role}
+          /> */}
+          <UserInfoItem
+            icon={<FaMapMarkerAlt className="text-purple-400" />}
+            label="Location"
+            value={`${user.city}, ${user.state}`}
+          />
+          <UserInfoItem
+            icon={<FaEnvelope className="text-purple-400" />}
+            label="Pincode"
+            value={user.pincode}
+          />
+        </div>
+
+        <button
+          onClick={handleLogout}
+          className="w-full bg-purple-600 text-white py-3 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition duration-300 ease-in-out transform hover:-translate-y-1 flex items-center justify-center"
+        >
+          <FaSignOutAlt className="mr-2" />
+          Logout
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default User;

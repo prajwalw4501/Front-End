@@ -1,42 +1,51 @@
 import React from "react";
+import { FaClock, FaSmile, FaProjectDiagram, FaStar } from "react-icons/fa";
+
+const StatCard = ({ icon, number, text }) => (
+  <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+    <div className="flex items-center justify-center mb-4">{icon}</div>
+    <h2 className="text-4xl font-bold text-center mb-2">{number}</h2>
+    <p className="text-center text-gray-300">{text}</p>
+  </div>
+);
 
 const Experience = () => {
+  const stats = [
+    {
+      icon: <FaClock className="text-5xl text-blue-400" />,
+      number: "12+",
+      text: "Years Experience",
+    },
+    {
+      icon: <FaSmile className="text-5xl text-green-400" />,
+      number: "60+",
+      text: "Happy Clients",
+    },
+    {
+      icon: <FaProjectDiagram className="text-5xl text-purple-400" />,
+      number: "120+",
+      text: "Completed Projects",
+    },
+    {
+      icon: <FaStar className="text-5xl text-yellow-400" />,
+      number: "4.9",
+      text: "Average Rating",
+    },
+  ];
+
   return (
-    <div className="dark:bg-black text-white dark:text-white py-14">
-      <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {/* first col */}
-          <div className="bg-dark/50 p-4 grid place-items-center">
-            <div className="text-center space-y-3">
-              <h1 className="text-5xl font-bold">12</h1>
-              <p className="text-xl font-semibold">Years Experience</p>
-            </div>
-          </div>
-          {/* second col */}
-          <div className="grid grid-rows-2 gap-4">
-            <div className="text-center p-6 bg-dark">
-              <h1 className="text-3xl font-bold">60+</h1>
-              <p>Happy Clients</p>
-            </div>
-            <div className="text-center p-6 bg-dark">
-              <h1 className="text-3xl font-bold">120+</h1>
-              <p>Completed Projects</p>
-            </div>
-          </div>
-          {/* Third col */}
-          <div className="grid grid-rows-2 gap-4">
-            <div className="text-center p-6 bg-dark">
-              <h1 className="text-3xl font-bold">60+</h1>
-              <p>Happy Clients</p>
-            </div>
-            <div className="text-center p-6 bg-dark">
-              <h1 className="text-3xl font-bold">120+</h1>
-              <p>Completed Projects</p>
-            </div>
-          </div>
+    <section className="bg-gradient-to-b from-gray-900 to-black text-white py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          Our Experience by Numbers
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <StatCard key={index} {...stat} />
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
